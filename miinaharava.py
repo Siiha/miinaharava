@@ -38,9 +38,9 @@ def pum(katsotut,miinat):
 			return True
 	return False
 			
-s = 5
+s = int(input("Anna kentän sivun pituus: "))
 land = [[0 for i in range(s)] for i in range(s)]
-m = s*s//5
+m = int(input("Anna haluamasi miinojen määrä (määrä voi olla pienempi, jos miinoille osuu sama sijainti ne lasketaan yhdeksi): "))
 # miinat[0][1] 0 on y ja 1 on x
 miinat = [(random.randint(0,s-1),random.randint(0,s-1)) for i in range(m)]
 for i in miinat:
