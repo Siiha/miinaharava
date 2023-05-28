@@ -1,34 +1,18 @@
 import random
 def viereiset(sijainti,s):
-	a = (1,0,-1)
-	if sijainti[0]==0:
-		if sijainti[1]==0:
-			return [(sijainti[0]+1,sijainti[1]),(sijainti[0],sijainti[1]+1),(sijainti[0]+1,sijainti[1]+1)]
-		if sijainti[1]==s-1:
-			return [(sijainti[0]+1,sijainti[1]),(sijainti[0],sijainti[1]-1),(sijainti[0]+1,sijainti[1]-1)]
-		r = [(sijainti[0]+i,sijainti[1]+j) for i in a[:2] for j in a if  (i==0 and j==0) == False]
-		return (r)
-	if sijainti[0]==s-1:
-		if sijainti[1] == 0:
-			r = [(sijainti[0]+i,sijainti[1]+j) for i in a[1:] for j in a[:2] if  (i==0 and j==0) == False]
-			return r
-		if sijainti[1] == s-1:
-			r = [(sijainti[0]+i,sijainti[1]+j) for i in a[1:] for j in a[1:] if  (i==0 and j==0) == False]
-			return r
-		r = [(sijainti[0]+i,sijainti[1]+j) for i in a[1:] for j in a if  (i==0 and j==0) == False]
-		return r
-	elif sijainti[1]==0:
-		r = [(sijainti[0]+i,sijainti[1]+j) for i in a for j in a[:2] if  (i==0 and j==0) == False]
-		return r
-	elif sijainti[1]==s-1:
-		r = [(sijainti[0]+i,sijainti[1]+j) for i in a for j in a[1:] if  (i==0 and j==0) == False]
-		return r
-	else:
-		r = [(sijainti[0]+i,sijainti[1]+j) for i in a for j in a if  (i==0 and j==0) == False]
-		return r
+	x0, y0 = sijainti
+	a = (1, 0, -1)
+	for dx in a:
+		for dy in a:
+			if dx == 0 and dy == 0:
+				continue
+			x = x0 + dx
+			y = y0 + dy
+			if 0 <= x < s and 0 <= y < s:
+				yield (x, y)
 def numeroi(sijainti,miinat,s):
 	c = 0
-	v = viereiset(sijainti,s)
+	v = set(viereiset(sijainti,s))
 	for i in set(miinat):
 		c += i in v
 	return c
@@ -64,10 +48,10 @@ while set(merkityt) != set(miinat):
 	if valinta:
 		viimeisin = syote
 		if land[viimeisin[0]][viimeisin[1]]==0 or numeroi(viimeisin,merkityt,s) == land[viimeisin[0]][viimeisin[1]]:
-			vv = [i for i in viereiset(viimeisin,s) if i not in merkityt]
+			vv = [i for i in set(viereiset(viimeisin,s)) if i not in merkityt]
 			for i in vv:
 				if land[i[0]][i[1]]==0 or numeroi(i,merkityt,s)==land[i[0]][i[1]]:
-					vv+=[j for j in viereiset(i,s) if j not in vv and j not in merkityt]
+					vv+=[j for j in set(viereiset(i,s)) if j not in vv and j not in merkityt]
 				
 			katsotut += vv
 	
