@@ -16,11 +16,6 @@ def numeroi(sijainti,miinat,s):
 	for i in set(miinat):
 		c += i in v
 	return c
-"""def pum(katsotut,miinat):
-	for i in katsotut:
-		if i in miinat:
-			return True
-	return False"""
 pum = lambda katsotut,miinat: set(katsotut) & set(miinat)
 			
 s = int(input("Anna kentän sivun pituus: "))
