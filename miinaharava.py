@@ -16,11 +16,12 @@ def numeroi(sijainti,miinat,s):
 	for i in set(miinat):
 		c += i in v
 	return c
-def pum(katsotut,miinat):
+"""def pum(katsotut,miinat):
 	for i in katsotut:
 		if i in miinat:
 			return True
-	return False
+	return False"""
+pum = lambda katsotut,miinat: set(katsotut) & set(miinat)
 			
 s = int(input("Anna kentän sivun pituus: "))
 land = [[0 for i in range(s)] for i in range(s)]
