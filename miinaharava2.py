@@ -2,7 +2,7 @@ from miina_k import *
 import random
 rint=random.randint
 s = int(input("Anna kentän sivun pituus: "))
-m = 25
+m = int(input("Anna haluamasi miinojen määrä (määrä voi olla pienempi, jos miinoille osuu sama sijainti ne lasketaan yhdeksi): "))
 miinat = [(rint(0,s-1),rint(0,s-1)) for i in range(m)]
 katsotut = []
 merkityt = []
