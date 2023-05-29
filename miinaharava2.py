@@ -1,7 +1,7 @@
 from miina_k import *
 import random
 rint=random.randint
-s = 10
+s = int(input("Anna kentän sivun pituus: "))
 m = 25
 miinat = [(rint(0,s-1),rint(0,s-1)) for i in range(m)]
 katsotut = []
