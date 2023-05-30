@@ -12,9 +12,9 @@ class UI:
 		self.miinat = []
 		self.katsotut = []
 		self.kartta = kartta
-	def vuorovaikutus(self):
-		self.valinta = int(input("valinta miinamerkintä ta katso ruutu 0 tai 1: "))
-		self.ruutu = tuple(map(int,input("Anna 0-"+str(s-1)+" koordinaatti muodossa x y: ").split()[::-1]))
+	def vuorovaikutus(self,valinta,ruutu):
+		self.valinta = valinta
+		self.ruutu = ruutu
 		if self.valinta:
 			self.katsotut.append(self.ruutu)
 		else:
@@ -34,12 +34,18 @@ class UI:
 			self.katsotut+=l			
 k = Kartta()
 u = UI(k)
+tappio = False
 while set(u.miinat) != set(k.miinat):
-	u.vuorovaikutus()
+	valinta = int(input("valinta miinamerkintä ta katso ruutu 0 tai 1: "))
+	ruutu = tuple(map(int,input("Anna 0-"+str(s-1)+" koordinaatti muodossa x y: ").split()[::-1]))
+	u.vuorovaikutus(valinta,ruutu)
 	if u.valinta:
 		u.katso_viereiset()
 	u.piirra()
 	if pum(u.katsotut,k.miinat):
-		print("PUM!!!")
+		tappio = True
 		break
-	
+if tappio:
+	print("PUM!!")
+else:
+	print("Hyvää työtä :D")
