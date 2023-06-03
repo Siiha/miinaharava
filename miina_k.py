@@ -47,4 +47,3 @@ class UI:
 				if numeroi(j,self.kartta.miinat,self.s)==0 or numeroi(j,self.kartta.miinat,self.s)==numeroi(j,self.miinat,self.s)!=0:
 					l+=[i for i in set(viereiset(j,self.s)) if i not in l and i not in self.miinat]
 			self.katsotut+=l
-			self.katsotut+=l
